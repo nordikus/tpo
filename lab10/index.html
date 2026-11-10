@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Генератор персонажа</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px auto;
+      max-width: 600px;
+      background-color: #f7f9fa;
+      color: #333;
+    }
+    .card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-top: 0;
+      color: #7a1ea1;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 8px 12px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .error-msg {
+      color: #d32f2f;
+      display: none;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    button {
+      background-color: #7a1ea1;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #5c167a;
+    }
+    #result-box {
+      margin-top: 24px;
+      padding: 16px;
+      background-color: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      border-radius: 4px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="page-title">Создание персонажа</h1>
+    <form id="character-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="char-name">Имя персонажа:</label>
+        <input type="text" id="char-name" name="charName" placeholder="Введите имя">
+        <div id="name-error" class="error-msg">Имя не может быть пустым</div>
+      </div>
+
+      <div class="form-group">
+        <label for="char-class">Класс:</label>
+        <select id="char-class" name="charClass">
+          <option value="Воин">Воин</option>
+          <option value="Волшебник">Волшебник</option>
+          <option value="Плут">Плут</option>
+          <option value="Жрец">Жрец</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="char-level">Уровень (1-20):</label>
+        <input type="number" id="char-level" name="charLevel" min="1" max="20" value="1">
+      </div>
+
+      <button type="submit" id="submit-btn">Создать лист персонажа</button>
+    </form>
+
+    <div id="result-box">
+      <h3 id="result-header">Персонаж успешно создан:</h3>
+      <p><strong>Имя:</strong> <span id="res-name"></span></p>
+      <p><strong>Класс:</strong> <span id="res-class"></span></p>
+      <p><strong>Уровень:</strong> <span id="res-level"></span></p>
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const nameInput = document.getElementById('char-name');
+      const errorDiv = document.getElementById('name-error');
+      const resultBox = document.getElementById('result-box');
+
+      if (!nameInput.value.trim()) {
+        errorDiv.style.display = 'block';
+        resultBox.style.display = 'none';
+        return;
+      }
+
+      errorDiv.style.display = 'none';
+      document.getElementById('res-name').textContent = nameInput.value.trim();
+      document.getElementById('res-class').textContent = document.getElementById('char-class').value;
+      document.getElementById('res-level').textContent = document.getElementById('char-level').value;
+      resultBox.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

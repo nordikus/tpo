@@ -1,0 +1,11 @@
+[
+  {
+    "domain": "dnd.su",
+    "httpOnly": false,
+    "name": "PHPSESSID",
+    "path": "/",
+    "sameSite": "Lax",
+    "secure": false,
+    "value": "0ffcfec8cd6e53501d68a0afa3485a97"
+  }
+]
